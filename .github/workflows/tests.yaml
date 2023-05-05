@@ -19,7 +19,7 @@ jobs:
 
       - name: Build
         run: |
-          go mod init
+          go mod download
           go build -v ./...
 
       - name: Test
