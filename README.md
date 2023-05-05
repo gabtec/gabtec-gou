@@ -34,7 +34,7 @@ func main() {
 
 ```sh
 # to run tests, do:
-$ go test -v .
+$ go test -v ./...
 ```
 
 # License
