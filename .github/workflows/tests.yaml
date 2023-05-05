@@ -19,7 +19,7 @@ jobs:
 
       - name: Build
         run: |
-          go install .
+          go get .
           go build -v ./...
 
       - name: Test
