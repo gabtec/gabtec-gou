@@ -1,5 +1,7 @@
 # Gabtec-Gou
 
+![](https://img.shields.io/github/license/gabtec/gabtec-gou) ![](https://img.shields.io/github/v/release/gabtec/gabtec-gou) ![](https://img.shields.io/github/go-mod/go-version/gabtec/gabtec-gou) ![](https://img.shields.io/github/actions/workflow/status/gabtec/gabtec-gou/tests.yaml)
+
 This is my first published Go package.
 
 It's called gabtec-gou, because "gou" stands for "Go Utils" :smile:
