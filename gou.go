@@ -10,3 +10,14 @@ func GetEnv(key, alternative string) string {
 
 	return alternative
 }
+
+// StrSlice - slices a given string "s", from 1st char until the given "n"'th char
+func StrSlice(s string, n int) string {
+	strAsRune := []rune(s)
+
+	if n < 0 || n >= len(strAsRune) {
+		return s
+	}
+
+	return string(strAsRune[0:n])
+}
