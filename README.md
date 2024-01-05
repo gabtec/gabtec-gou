@@ -32,9 +32,9 @@ func main() {
 
 # Available Functions
 
-### :briefcase: SliceContainsString(slice []string, str string) bool {}
+### :briefcase: GetEnv(key, defaultValue string) string {}
 
-### :briefcase: SliceContainsString(slice []string, str string) bool {}
+### :briefcase: StrSlice(s string, n int) string {}
 
 ### :briefcase: SliceContainsString(slice []string, str string) bool {}
 
