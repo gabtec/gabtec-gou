@@ -30,6 +30,14 @@ func main() {
 }
 ```
 
+# Available Functions
+
+### :briefcase: SliceContainsString(slice []string, str string) bool {}
+
+### :briefcase: SliceContainsString(slice []string, str string) bool {}
+
+### :briefcase: SliceContainsString(slice []string, str string) bool {}
+
 # Testing
 
 ```sh
