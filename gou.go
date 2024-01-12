@@ -78,3 +78,29 @@ func MergeMaps(a, b map[string]interface{}) map[string]interface{} {
 
 	return merged
 }
+
+// MergeStringMaps will merge together 2 maps of type map[string]string
+// the values of the 2nd map, if already existent in 1st map, will override
+//
+// Parameters:
+//   - a: map[string]string - The 1st map to merge
+//   - b: map[string]string - The 2nd map to merge
+//
+// Returns:
+//   - map[string]string - The resulting merged map
+func MergeStringMaps(a, b map[string]string) map[string]string {
+	merged := make(map[string]string)
+
+	// work on map "a"
+	for key, value := range a {
+		merged[key] = value
+	}
+
+	// work on map "a"
+	// will OVERRIDE existing map[key]...
+	for key, value := range b {
+		merged[key] = value
+	}
+
+	return merged
+}

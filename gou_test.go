@@ -238,3 +238,58 @@ func TestMergeMaps(t *testing.T) {
 		})
 	}
 }
+
+// MergeStringMaps() tests
+// ===========================================
+func TestMergeStringMaps(t *testing.T) {
+	tests := []struct {
+		name        string // test name
+		firstMap    map[string]string
+		secondMap   map[string]string
+		expectedRes map[string]string
+	}{
+		// Test...
+		{
+			name: "Should work ok",
+			firstMap: map[string]string{
+				"annot": "this is a annotation",
+			},
+			secondMap: map[string]string{
+				"todo": "another anot",
+			},
+			expectedRes: map[string]string{
+				"annot": "this is a annotation",
+				"todo":  "another anot",
+			},
+		},
+		// Test...
+		{
+			name: "Should override existing keys",
+			firstMap: map[string]string{
+				"annot": "this is a annotation",
+				"desc":  "made for dev",
+			},
+			secondMap: map[string]string{
+				"desc": "made for testing",
+				"todo": "another anot",
+			},
+			expectedRes: map[string]string{
+				"annot": "this is a annotation",
+				"desc":  "made for testing",
+				"todo":  "another anot",
+			},
+		},
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := MergeStringMaps(tt.firstMap, tt.secondMap)
+
+			jRes, _ := json.Marshal(result)
+			jExp, _ := json.Marshal(tt.expectedRes)
+			if string(jRes) != string(jExp) {
+				t.Errorf("Expected %s, got %s.", jExp, jRes)
+			}
+		})
+	}
+}
