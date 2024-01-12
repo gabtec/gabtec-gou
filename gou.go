@@ -52,3 +52,29 @@ func SliceContainsString(slice []string, str string) bool {
 	}
 	return false
 }
+
+// MergeMaps will merge together 2 maps of type map[string]interface{}
+// the values of the 2nd map, if already existent in 1st map, will override
+//
+// Parameters:
+//   - a: map[string]interface{} - The 1st map to merge
+//   - b: map[string]interface{} - The 2nd map to merge
+//
+// Returns:
+//   - map[string]interface{} - The resulting merged map
+func MergeMaps(a, b map[string]interface{}) map[string]interface{} {
+	merged := make(map[string]interface{})
+
+	// work on map "a"
+	for key, value := range a {
+		merged[key] = value
+	}
+
+	// work on map "a"
+	// will OVERRIDE existing map[key]...
+	for key, value := range b {
+		merged[key] = value
+	}
+
+	return merged
+}

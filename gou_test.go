@@ -1,6 +1,7 @@
 package gou
 
 import (
+	"encoding/json"
 	"os"
 	"testing"
 )
@@ -153,7 +154,86 @@ func TestSliceContainsString(t *testing.T) {
 			result := SliceContainsString(tt.srcSlice, tt.checkStr)
 
 			if result != tt.expectedRes {
-				t.Errorf("Expected %t, got %t.", tt.expectedRes, result)
+				t.Errorf("Expected %v, got %v.", tt.expectedRes, result)
+			}
+		})
+	}
+}
+
+// MergeMaps() tests
+// ===========================================
+func TestMergeMaps(t *testing.T) {
+	tests := []struct {
+		name        string // test name
+		firstMap    map[string]interface{}
+		secondMap   map[string]interface{}
+		expectedRes map[string]interface{}
+	}{
+		// Test...
+		{
+			name: "Should work ok",
+			firstMap: map[string]interface{}{
+				"annot": "this is a annotation",
+			},
+			secondMap: map[string]interface{}{
+				"todo": map[string]string{
+					"monday": "buy milk",
+				},
+			},
+			expectedRes: map[string]interface{}{
+				"annot": "this is a annotation",
+				"todo": map[string]string{
+					"monday": "buy milk",
+				},
+			},
+		},
+		// Test...
+		{
+			name: "Should override existing keys",
+			firstMap: map[string]interface{}{
+				"annot": "this is a annotation",
+				"desc":  "made for dev",
+			},
+			secondMap: map[string]interface{}{
+				"desc": "made for testing",
+				"todo": map[string]string{
+					"monday": "buy milk",
+				},
+			},
+			expectedRes: map[string]interface{}{
+				"annot": "this is a annotation",
+				"desc":  "made for testing",
+				"todo": map[string]string{
+					"monday": "buy milk",
+				},
+			},
+		},
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			result := MergeMaps(tt.firstMap, tt.secondMap)
+
+			// checkedKeys := []string{}
+
+			// // secondMap first, because of override
+			// for k := range tt.secondMap {
+			// 	checkedKeys = append(checkedKeys, k)
+			// 	t.Errorf("Expected %s, got %v.", tt.expectedRes[k], result[k])
+			// }
+
+			// // may not have all keys, because of Override
+			// for k := range tt.firstMap {
+			// 	if SliceContainsString(checkedKeys, k) {
+			// 		continue
+			// 	}
+			// 	t.Errorf("Expected %s, got %v.", tt.expectedRes[k], result[k])
+			// }
+
+			jRes, _ := json.Marshal(result)
+			jExp, _ := json.Marshal(tt.expectedRes)
+			if string(jRes) != string(jExp) {
+				t.Errorf("Expected %s, got %s.", jExp, jRes)
 			}
 		})
 	}
